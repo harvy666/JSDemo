@@ -13,10 +13,22 @@ console.log(checkbox4.checked);
 let checkboxes = Array.from(document.getElementsByName("box"));
 console.log(checkboxes);
 
-for (let i = 0; i < checkboxes.length; i++) {
-  if (checkboxes[i].type === "checkbox") {
-    console.log("element" + i);
-  }
+// for (let i = 0; i < checkboxes.length; i++) {
+//   if (checkboxes[i].type === "checkbox") {
+//     console.log("element" + i);
+//   }
+// }
+
+function allChecked() {
+  checkboxes.forEach(function (checkbox) {
+    checkbox.checked = true;
+  });
+}
+
+function allUnChecked() {
+  checkboxes.forEach(function (checkbox) {
+    checkbox.checked = false;
+  });
 }
 
 //second commit
