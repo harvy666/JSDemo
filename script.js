@@ -10,4 +10,13 @@ console.log(checkbox3.checked);
 let checkbox4 = document.getElementById("room4");
 console.log(checkbox4.checked);
 
+let checkboxes = Array.from(document.getElementsByName("box"));
+console.log(checkboxes);
+
+for (let i = 0; i < checkboxes.length; i++) {
+  if (checkboxes[i].type === "checkbox") {
+    console.log("element" + i);
+  }
+}
+
 //second commit
