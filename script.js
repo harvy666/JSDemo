@@ -1,3 +1,7 @@
+///////////////////////////////////////////////
+
+console.log("hello Script");
+
 let checkbox1 = document.getElementById("room1");
 console.log(checkbox1.checked);
 
