@@ -1,16 +1,28 @@
-console.log("hello POSTgres");
-import { Client } from "pg";
-require("dotenv").config();
+import pkg from "pg";
+const { Client } = pkg;
+const client = new Client({
+  user: "postgres",
+  host: "localhost",
+  database: "jsdemo",
+  password: "palacsinta",
+  port: 5432,
+});
+client.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
-export async function getClient() {
-  const client = new Client({
-    host: process.env.PG_HOST,
-    port: process.env.PG_PORT,
-    user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD,
-    database: process.env.PG_DATABASE,
-    ssl: true,
-  });
-  await client.connect();
-  return client;
-}
+client.query(
+  "CREATE TABLE rooms (id serial PRIMARY KEY, label  VARCHAR(255),checked BOOLEAN NOT NULL)",
+  (err, res) => {
+    console.log(err, res);
+  }
+);
+
+client.query(
+  "INSERT INTO rooms (label,checked) VALUES ('room1',true)",
+  (err, res) => {
+    console.log(err, res);
+    client.end();
+  }
+);
