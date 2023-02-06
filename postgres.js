@@ -17,11 +17,11 @@ const client = new Client({
 
 client
   .connect()
-  .then(() => console.log("Connected!"))
-  .catch((e) => console.log());
+  .then(() => console.log("---------Connected!---------"))
+  .catch((e) => console.log(e));
 
 client.query(
-  "CREATE TABLE rooms (id serial PRIMARY KEY, label  VARCHAR(255),checked BOOLEAN NOT NULL)",
+  "CREATE TABLE IF NOT EXISTS rooms (id serial PRIMARY KEY, label  VARCHAR(255),checked BOOLEAN NOT NULL)",
   (err, res) => {
     console.log(err, res);
   }
@@ -35,8 +35,8 @@ client.query(
   }
 );
 
-// client
-//   .query("SELECT NOW()")
-//   .then((result) => console.log(result))
-//   .catch((e) => console.error(e.stack))
-//   .then(() => client.end());
+client
+  .query("SELECT * from rooms")
+  // .then((result) => console.log(result))
+  .then((results) => console.table(results.rows))
+  .catch((e) => console.error(e.stack));
