@@ -1,4 +1,5 @@
-import { Client } from "pg";
+import pkg from "pg";
+const { Client } = pkg;
 require("dotenv").config();
 
 export async function getClient() {
@@ -11,5 +12,6 @@ export async function getClient() {
     ssl: true,
   });
   await client.connect();
+  console.log("okay!");
   return client;
 }

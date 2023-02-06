@@ -1,3 +1,13 @@
+import exp from "express";
+const express = exp;
+const app = express();
+const port = 3000;
+
+app.listen(port, () => {
+  console.log(`---Server running on http://localhost:${port}---`);
+});
+
+//////////////////////////////////////////////
 import pkg from "pg";
 const { Client } = pkg;
 
